@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TaskList from './TaskList'
-import ModalAddNewTask from './ModalAddNewTask'
+import ModalAddOrEditTask from './ModalAddOrEditTask'
 import './App.css'
 
 const columnsNames = ['To Do', 'In Progress', 'Done'];
@@ -9,7 +9,13 @@ class App extends Component {
 
   state = {
     tasks: [],
-    modalAddNewTaskVisible: false
+    modalAddNewTaskVisible: false,
+    currentEditingTask: {
+      id: null,
+      name: '',
+      description: '',
+      status: columnsNames[0]
+    }
   };
 
   handleBackdropClick = () => {
@@ -26,7 +32,20 @@ class App extends Component {
   
   openModalAddNewTask = () => {
     this.setState({
-      modalAddNewTaskVisible: true
+      modalAddNewTaskVisible: true,
+      currentEditingTask: {
+        id: null,
+        name: '',
+        description: '',
+        status: columnsNames[0]
+      }
+    })
+  }
+  
+  openModalEditTask = task => {
+    this.setState({
+      modalAddNewTaskVisible: true,
+      currentEditingTask: task
     })
   }
 
@@ -34,13 +53,22 @@ class App extends Component {
     this.setState(prev => {
       const { tasks } = prev
       tasks.push({
-        id: tasks.length + 1,
-        name: task.taskName,
-        description: task.taskDescription,
-        status: 'To Do'
+        id: tasks.length + 1 + '_' + Math.random().toString(36).substr(-8),
+        name: task.name,
+        description: task.description,
+        status: task.status
       })
       this.updateLocalStorageTasks(tasks)
       return { tasks, modalAddNewTaskVisible: false }
+    })
+  }
+
+  saveTask = task => {
+    this.setState(prev => {
+      const { tasks } = prev
+      const newTasks = tasks.filter(_ => _.id !== task.id).concat([ task ])
+      this.updateLocalStorageTasks(newTasks)
+      return { tasks: newTasks, modalAddNewTaskVisible: false }
     })
   }
 
@@ -74,7 +102,8 @@ class App extends Component {
   }
 
   render() {
-    const { tasks, modalAddNewTaskVisible } = this.state;
+    const { tasks, modalAddNewTaskVisible, currentEditingTask } = this.state;
+
     const columns = columnsNames.map(column => ({
       name: column,
       tasks: tasks.filter(_ => _.status === column)
@@ -91,10 +120,10 @@ class App extends Component {
         </section>
         <section className="app-content">
           {columns.map(column => (
-            <TaskList moveTask={this.moveTask} removeTask={this.removeTask} key={column.name} column={column} />
+            <TaskList moveTask={this.moveTask} openModalEditTask={this.openModalEditTask} removeTask={this.removeTask} key={column.name} column={column} />
           ))}
         </section>
-        <ModalAddNewTask addNewTask={this.addNewTask} visible={modalAddNewTaskVisible} closeModal={this.closeModalAddNewTask}/>
+        <ModalAddOrEditTask task={currentEditingTask} saveTask={this.saveTask} addNewTask={this.addNewTask} visible={modalAddNewTaskVisible} closeModal={this.closeModalAddNewTask}/>
       </div>
     );
   }
