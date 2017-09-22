@@ -1,6 +1,6 @@
 .task-list{
     background-color: #f5f5f5;
-    margin: 20px;
+    margin: 10px 20px;
     display: inline-block;
     width: calc(33.3% - 60px);
     float: left;
@@ -20,4 +20,10 @@
     border-bottom: 1px solid rgba(0,0,0,.1);
     line-height: 35px;
     pointer-events: none;
+}
+
+@media screen and (max-width: 768px){
+    .task-list{
+        width: calc(100% - 60px);
+    }
 }

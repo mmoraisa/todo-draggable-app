@@ -10,6 +10,11 @@
     -webkit-user-select: none;
 }
 
+.task span.name{
+    width: calc(100% - 15px);
+    display: inline-block;
+}
+
 .task .remove{
     display: inline-block;
     float: right;

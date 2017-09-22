@@ -62,11 +62,11 @@ class ModalAddOrEditTask extends Component{
                 <form onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
                         <label htmlFor="name">Name:</label>
-                        <input id="name" type="text" placeholder="New Task Name" onChange={this.handleTaskNameChange} value={name}/>
+                        <input id="name" type="text" placeholder="New Task Name" onChange={this.handleTaskNameChange} value={name} required/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="description">Description:</label>
-                        <textarea id="description" placeholder="New Task Description" onChange={this.handleTaskDescriptionChange} value={description}/>
+                        <textarea id="description" placeholder="New Task Description" onChange={this.handleTaskDescriptionChange} value={description} required/>
                     </div>
                     <button type="submit"><i className="fa fa-save"></i>Save Task</button>
                 </form>
