@@ -1,0 +1,47 @@
+.app-header {
+  background-color: #6cc2f7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 20px);
+  padding: 10px;
+  height: 30px;
+  cursor: default;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.app-header h1{
+  margin: 0;
+  line-height: 30px;
+  display: inline-block;
+  color: #ffffff;
+}
+
+.app-header .open-modal-add-new-task{
+  cursor: pointer;
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  float: right;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+.app-content{
+  margin-top: 50px;
+}
+
+.backdrop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.15);
+  z-index: 100;
+}

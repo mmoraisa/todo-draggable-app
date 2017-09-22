@@ -1,0 +1,77 @@
+.modal-add-new-task{
+    position: fixed;
+    width: 440px;
+    height: 260px;
+    top: calc(50% - 150px);
+    left: calc(50% - 240px);
+    background-color: #f1f1f1;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.25);
+    padding: 20px;
+    z-index: 110;
+}
+
+.modal-add-new-task:not(.visible){
+    display: none;
+}
+
+.modal-add-new-task .modal-header{
+    margin-top: 10px;
+}
+
+.modal-add-new-task .modal-header h1{
+    font-size: 25px;
+    display: inline-block;
+    margin-top: 0;
+    color: #5d5d5d;
+}
+
+.modal-add-new-task .modal-header a{
+    float: right;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+    font-size: 25px;
+    text-decoration: none;
+    color: #989898;
+    cursor: pointer;
+}
+
+.modal-add-new-task form input, .modal-add-new-task form textarea{
+    width: calc(100% - 20px);
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,.3);
+    margin-top: 5px;
+}
+
+.modal-add-new-task form textarea{
+    height: 70px;
+    resize: none;
+}
+
+.modal-add-new-task form label{
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #717171;
+}
+
+.modal-add-new-task form .form-group{
+    margin: 0 0 10px 0;
+}
+
+.modal-add-new-task form button[type="submit"]{
+    background: #398bbd;
+    padding: 5px 10px;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.1);
+    float: right;
+}
+
+.modal-add-new-task form button[type="submit"] i{
+    margin-right: 5px;
+}
