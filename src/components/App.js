@@ -44,6 +44,15 @@ class App extends Component {
     })
   }
 
+  removeTask = task => {
+    this.setState(prev => {
+      const { tasks } = prev
+      const newTasks = tasks.filter(_ => _.id !== task.id)
+      this.updateLocalStorageTasks(newTasks)
+      return { tasks: newTasks }
+    })
+  }
+
   moveTask = (task,taskListName) => {
     task.status = taskListName;
     this.setState(prev => {
@@ -82,7 +91,7 @@ class App extends Component {
         </section>
         <section className="app-content">
           {columns.map(column => (
-            <TaskList moveTask={this.moveTask} key={column.name} column={column} />
+            <TaskList moveTask={this.moveTask} removeTask={this.removeTask} key={column.name} column={column} />
           ))}
         </section>
         <ModalAddNewTask addNewTask={this.addNewTask} visible={modalAddNewTaskVisible} closeModal={this.closeModalAddNewTask}/>

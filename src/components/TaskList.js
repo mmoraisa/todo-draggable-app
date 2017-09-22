@@ -29,12 +29,12 @@ class TaskList extends Component{
     }
 
     render() {
-        const { column } = this.props
+        const { column, removeTask } = this.props
         return (
             <div className="task-list" data-task-list-name={column.name} onDrop={this.handleDrop} onDragOver={this.preventDefault}>
                 <h2>{column.name}</h2>
                 { column.tasks.map(task => (
-                    <Task key={task.id} task={task}/>
+                    <Task key={task.id} task={task} removeTask={ removeTask }/>
                 )) }
             </div>
         )

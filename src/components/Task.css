@@ -9,3 +9,15 @@
     -ms-user-select: none;
     -webkit-user-select: none;
 }
+
+.task .remove{
+    display: inline-block;
+    float: right;
+    color: #c7c7c7;
+    transition: .2s all ease;
+    cursor: pointer;
+}
+
+.task .remove:hover{
+    color: #616161;
+}
